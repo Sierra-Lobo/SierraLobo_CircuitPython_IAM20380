@@ -37,7 +37,7 @@ except ImportError:
 
 _DEFAULT_ADDR = const(0x68)
 
-_WHO_AM_I = const((const(0xB5), const(0xFD)))  # IAM20380, IAM20380HT
+_WHO_AM_I = (const(0xB5), const(0xFD))  # IAM20380, IAM20380HT
 
 _IAM20380_TEMP_OFFS = const(0x0)
 
