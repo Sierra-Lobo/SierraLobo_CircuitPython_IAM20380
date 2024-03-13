@@ -87,10 +87,11 @@ class IAM20380:
     def __init__(self, i2c_bus: I2C, addr: int = _DEFAULT_ADDR) -> None:
         self.i2c_device = I2CDevice(i2c_bus, addr)
         self.reset()  # a soft reset is required
-        if self._chip_id != _WHO_AM_I:  # ensured after soft reset
+        if self._chip_id not in _WHO_AM_I:  # ensured after soft reset
             raise RuntimeError(
-                f"IAM20380 @ {addr:#x}: bad chip id '{self._chip_id:#x}' != '{_WHO_AM_I:#x}'"
+                f"IAM20380 @ {addr}: bad chip id '{self._chip_id}' != '{_WHO_AM_I}'"
             )
+        self._buffer = bytearray(6)
 
     def reset(self) -> None:
         """Reset the sensor to the default state set by the library
